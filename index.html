@@ -5,6 +5,14 @@
     <script src="https://npmcdn.com/vue/dist/vue.js"></script>
     <link rel="stylesheet" href="css/foundation.min.css">
     <link rel="stylesheet" href="css/app.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-81334433-3"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-81334433-3');
+    </script>
 </head>
 <body>
 <div id="app">
@@ -15,27 +23,27 @@
                 <div 
                     class="bar text-center" 
                     style="background-color: green; color: white;"
-                    :style="{width: playerHP + '%'}">
-                    {{ playerHP }}
+                    :style="{width: getPlayerHPPercent + '%'}">
+                    <span class="amount">{{ playerHP }} / {{ playerMaxHP }}</span>
                 </div>
             </div>
             <div class="bar">
                 <div 
                     class="bar text-center" 
                     style="background-color: blue; color: white;"
-                    :style="{width: playerMP + '%'}">
-                    {{ playerMP }}
+                    :style="{width: getPlayerMPPercent + '%'}">
+                    <span class="amount">{{ playerMP }} / {{ playerMaxMP }}</span>
                 </div>
             </div>
         </div>
         <div class="small-6 columns">
-            <h1 class="text-center">MONSTER</h1>
+            <h1 class="text-center">{{ monsterName }}</h1>
             <div class="bar">
                 <div 
                     class="bar text-center" 
                     style="background-color: green; color: white;"
-                    :style="{width: monsterHP + '%'}">
-                    {{ monsterHP }}
+                    :style="{width: getMonsterHPPercent + '%'}">
+                    <span class="amount">{{ monsterHP }} / {{ monsterMaxHP }}</span>
                 </div>
             </div>
         </div>

@@ -18,6 +18,10 @@
     box-shadow: 0px 3px 6px #ccc;
 }
 
+.amount {
+    white-space: nowrap;
+}
+
 .turn {
     margin-top: 20px;
     margin-bottom: 20px;
