@@ -3,12 +3,13 @@ new Vue ({
   data: {
     playerHP: 100,
     playerMaxHP: 100,
-    monsterName: 'MONSTER',
+    monsterName: 'Monster',
     monsterArmor: 0,
     monsterHP: 100,
     monsterMaxHP: 100,
     monsterMinDmg: 0,
     monsterMaxDmg: 0,
+    winStreak: 0,
     playerMP: 100,
     playerMaxMP: 100,
     isRunning: false,
@@ -28,6 +29,7 @@ new Vue ({
   methods: {
     startGame() {
       this.isRunning = true;
+      this.winStreak = 0;
       this.initializeHero();
       this.initializeMonster();
     },
@@ -42,6 +44,7 @@ new Vue ({
       this.playerHP = this.playerMaxHP - this.playerHP >= 50 ? this.playerHP += 50 : this.playerMaxHP; 
       this.playerMaxMP += 20;
       this.playerMP = this.playerMaxMP - this.playerMP >= 50 ? this.playerMP += 50 : this.playerMaxMP;
+      this.winStreak += 1;
     },
     moveToNextLevel() {
       this.upgradeHero();

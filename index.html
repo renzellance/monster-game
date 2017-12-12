@@ -18,7 +18,7 @@
 <div id="app">
     <section class="row">
         <div class="small-6 columns">
-            <h1 class="text-center">YOU</h1>
+            <h1 class="text-center">You</h1>
             <div class="bar">
                 <div 
                     class="bar text-center" 
@@ -60,6 +60,9 @@
             <button id="heal" @click="heal">HEAL (15)</button>
             <button id="give-up" @click="giveUp">GIVE UP</button>
         </div>
+    </section>
+    <section class="row controls">
+        <h2>Win Streak: {{ winStreak }}</h2>
     </section>
     <section class="row log" v-if="turns.length > 0">
         <div class="small-12 columns">
