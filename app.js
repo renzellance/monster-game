@@ -7,6 +7,8 @@ new Vue ({
     monsterArmor: 0,
     monsterHP: 100,
     monsterMaxHP: 100,
+    monsterMinDmg: 0,
+    monsterMaxDmg: 0,
     playerMP: 100,
     playerMaxMP: 100,
     isRunning: false,
@@ -36,10 +38,10 @@ new Vue ({
       this.playerMaxMP = 100;
     },
     upgradeHero() {
-      this.playerHP += 20;
       this.playerMaxHP += 20;
-      this.playerMP += 20;
+      this.playerHP = this.playerMaxHP - this.playerHP >= 50 ? this.playerHP += 50 : this.playerMaxHP; 
       this.playerMaxMP += 20;
+      this.playerMP = this.playerMaxMP - this.playerMP >= 50 ? this.playerMP += 50 : this.playerMaxMP;
     },
     moveToNextLevel() {
       this.upgradeHero();
@@ -51,36 +53,50 @@ new Vue ({
           name: 'Cyclops',
           armor: .9,
           health: 90,
+          min: 5,
+          max: 9,
         },
         {
           name: 'Basilisk',
           armor: 1,
           health: 100,
+          min: 5,
+          max: 12,
         },
         {
           name: 'Centaur',
           armor: .7,
           health: 70,
+          min: 5,
+          max: 7,
         },
         {
           name: 'Cyborg Ninja',
           armor: .6,
           health: 60,
+          min: 4,
+          max: 6,
         },
         {
           name: 'Kobold',
           armor: .5,
           health: 50,
+          min: 2,
+          max: 5,
         },
         {
           name: 'Goblin',
           armor: .4,
           health: 40,
+          min: 1,
+          max: 4,
         },
         {
           name: 'Troll',
           armor: .8,
           health: 80,
+          min: 4,
+          max: 8,
         }
       ];
 
@@ -90,6 +106,8 @@ new Vue ({
       this.monsterArmor = randomMonster.armor;
       this.monsterHP = randomMonster.health;
       this.monsterMaxHP = randomMonster.health;
+      this.monsterMinDmg = randomMonster.min;
+      this.monsterMaxDmg = randomMonster.max;
     },
     dmgCalc(min, max) {
       return Math.max(Math.floor(Math.random() * max) + 1, min);
@@ -111,7 +129,7 @@ new Vue ({
       return this.playerMP - cost >= 0;
     },
     monsterAtk() {
-      let dmg = this.dmgCalc(5, 12);
+      let dmg = this.dmgCalc(this.monsterMinDmg, this.monsterMaxDmg);
       this.playerHP -= dmg;
       this.turns.unshift({
         isPlayer: false,
