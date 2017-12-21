@@ -28,6 +28,7 @@ new Vue ({
   },
   methods: {
     startGame() {
+      this.turns = [];
       this.isRunning = true;
       this.winStreak = 0;
       this.initializeHero();
@@ -45,6 +46,10 @@ new Vue ({
       this.playerMaxMP += 20;
       this.playerMP = this.playerMaxMP - this.playerMP >= 50 ? this.playerMP += 50 : this.playerMaxMP;
       this.winStreak += 1;
+      this.turns.unshift({
+        isPlayer: true,
+        message: 'Player leveled up! Max HP and MP increased by 20 points. HP and MP healed by 50 points.'
+      });
     },
     moveToNextLevel() {
       this.upgradeHero();
